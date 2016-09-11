@@ -7,3 +7,15 @@ Sivut:
 - Tietoa
 - Yritys
 - Mainostus
+
+
+Dynaamista:
+ - register (kutsutaan register formilla)
+ - login (kutsutaan login formilla)
+ - fetch json (kutsutaan tilausformilla)
+ - order (kutsutaan tilausformilla)
+ - modify profile (kutsutaan profiilista)
+
+
+Tilausformi AJAX ekan sivun jälkeen?
+
