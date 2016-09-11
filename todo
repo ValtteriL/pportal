@@ -1,14 +1,9 @@
-1. Register & Login system for workers
-  - data layout in database for workers
-  - registration forms
-  
-2. Working area
-
-3. Search function
-  - fetch all available workers by address
-  - data layout for customers
-    -
-    -
-
-
-4. Make all above responsive
+Sivut:
+- Etusivu
+- Rekisteröidy
+- Kirjaudu
+- Profiili
+- Käyttöehdot
+- Tietoa
+- Yritys
+- Mainostus
