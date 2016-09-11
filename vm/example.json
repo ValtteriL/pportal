@@ -1,0 +1,82 @@
+{
+    "data": [
+        {
+            "Claim": {
+                "id": "3567",
+                "user_id": "341",
+                "expiration": "2013-07-06 23:59:59",
+                "content": "Apples",
+                "point": "85.71",
+                "exp": "Jul 6, 2013"
+            },
+            "User": {
+                 "score": "-1030.17",
+                "id": "341"
+            },
+            "ClaimResponse": {
+                "point": "80",
+                "response_type": "yeah",
+                "claim_id": "3567"
+            },
+            "viewer": {
+                "isOwner": "0",
+                "isResponsed": "1",
+                "response": "yeah",
+                "lockedInPoint": "80"
+            }
+        },
+        {
+            "Claim": {
+                "id": "3576",
+                "user_id": "342",
+                "expiration": "2013-06-15 00:00:00",
+                "content": "Oranges",
+                "point": "86.42",
+                "exp": "Jun 15, 2013"
+            },
+            "User": {
+                "score": "-3128.13",
+                "id": "342"
+            },
+            "ClaimResponse": {
+                "point": "71",
+                "response_type": "yeah",
+                "claim_id": "3576"
+            },
+            "viewer": {
+                "isOwner": "0",
+                "isResponsed": "1",
+                "response": "yeah",
+                "lockedInPoint": "71"
+            }
+        },
+        {
+            "Claim": {
+                "id": "3577",
+                "user_id": "342",
+                "expiration": "2013-07-01 00:00:00",
+                "content": "Peanuts",
+                "point": "80.25",
+                "exp": "Jul 1, 2013"
+            },
+            "User": {
+                "score": "-3128.13",
+                "id": "342"
+            },
+            "ClaimResponse": {
+                "point": "67",
+                "response_type": "yeah",
+                "claim_id": "3577"
+            },
+            "viewer": {
+                "isOwner": "0",
+                "isResponsed": "1",
+                "response": "yeah",
+                "lockedInPoint": "67"
+            }
+        }
+    ],
+    "errors": [],
+    "success": true,
+    "code": 200
+}

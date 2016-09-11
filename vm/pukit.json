@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "nimi": "Artturi",
+      "osoite": "Osmalahdenkumpu 7",
+      "motto": "KEK"
+    },
+    {
+      "nimi": "Juuso",
+      "osoite": "MyllyAHO",
+      "motto": "Olen rikollinen"
+    },
+    {
+      "nimi": "Viljami",
+      "osoite": "Karuna",
+      "motto": "klunk klunk"
+    }
+  ]
+}
