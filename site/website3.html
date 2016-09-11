@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Pukkipalvelu</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+
+
+	.jumbotron{
+	background-color: red;
+	color:white;
+	padding:50px 25px;
+	letter-spacing:4px;
+	font-family: Century Gothic, sans-serif;}
+.navbar{letter-spacing:4px;z-index: 9999;margin-botton:0;color:red;line-height: 1.42857143 !important;
+background-color: red; font-family: Century Gothic, sans-serif;}
+.container-fluid{padding: 80px 50px; text-spacing: 3px;font-family:Century Gothic;}
+.logo{font-size:150px;}
+.navbar li a, .navbar .navbar-brand{color: white!important;}
+footer.glyphicon{font-size: 40px; margin-bottom: 20px;}
+h2{margin-bottom: 40px;}
+.bg-grey{background-color: #f6f6f6;}
+h1{letter-spacing:6px;}
+
+</style>
+
+</head>
+
+<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+</button>
+<a class="navbar-brand" href="#myPage">Pukkipalvelu</a>
+</div>
+<div class="collapse navbar-collapse" id="myNavbar">
+<ul class="nav navbar-nav navbar-right">
+<li class="active">
+<li><a href="#meistä">Meistä</a></li>
+<li><a href="#pukkipalvelun käyttö">Palvelun käyttö</a></li>
+<li><a href="#ota yhteyttä">Ota yhteyttä</a></li>
+<li><a href="#"><span class="glyphicon glyphicon-user"></span>Rekisteröidy</a></li>
+<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Kirjaudu</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<div class="jumbotron text-center">
+<h1><strong>Pukkipalvelu</strong></h1>
+
+<img src="joulupukki.jpg" class="img-circle" alt="joulupukki" width="350" height="300">
+
+<p><em>ja joulu on pelastettu</em></strong></p>
+<form class="form-inline">
+<input type="address" class="form-control" size="50" placeholder="Etsi lähin pukki">
+<button type="button" class="btn btn-danger">Etsi</button>
+</form>
+</div>
+
+<div id="meistä" class="container-fluid">
+<div class="row">
+<div class="col-sm-8">
+
+<h2>Meistä yrityksenä</h2>
+<p>Pukkipalvelusta löydät helposti lähialueesi pukit. <br>Sinun ei tarvitse muuta kuin rekisteröityä ja syöttää 
+osoitteesi kenttään, niin sivusto hakee <br>juuri sinulle sopivan pukin. 
+Niin helppoa se on! Kokeile niin näet itse!</p>
+
+</div>
+<div class="col-sm-4">
+<span class="glyphicon glyphicon-gift logo"></span>
+</div>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div id="pukkipalvelun käyttö" class="container-fluid text-center">
+<h2>Pukkipalvelun käyttö</h2>
+<p>Pukkipalvelun käyttö on todella helppoa. Alla oleva kollaasi näyttää askel askeleelta miten se tapahtuu:</p>
+<div id="MyCarousel" class="carousel slide text-center" data-ride="carousel">
+<ol class="carousel-indicators">
+<li data-target="#MyCarousel" data-slide-to="0" class="active"></li>
+<li data-target="#MyCarousel" data-slide-to="1"></li>
+<li data-target="#MyCarousel" data-slide-to="2"></li>
+</ol>
+
+<div class="carousel-inner" role="listbox">
+<div class="item active">
+<h3>1. askel<br> Luo tili painamalla yläkulmasta<br>rekisteröidy nyt-painiketta<span style="font-style:normal;"></span></h3>
+</div>
+<div class="item">
+<h3>2. askel<br>Syötä hakukenttään osoitteesi. Tämän jälkeen näet <br>ruudussasi lähialueesi pukit.<span style="font-style:normal;"></span></h3>
+</div>
+<div class="item">
+<h3>3. askel<br>Valitse itsellesi sopiva pukki ja odota <br>hänen saapumista<span style="font-style:normal;"></span></h3>
+</div>
+</div>
+
+<a class="left carousel-control" href="#MyCarousel" role="button" data-slide="prev">
+<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+<span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#MyCarousel" role="button" data-slide="next">
+<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+<span class="sr-only">Next</span>
+</a>
+</div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<div id="ota yhteyttä" class="container-fluid text-center bg-grey">
+<h2>Ota yhteyttä</h2>
+<div class="row">
+<div class="col-sm-5">
+<p><span class="glyphicon glyphicon-map-marker"></span>Turku, Fin</p>
+<p><span class="glyphicon glyphicon-phone"></span>020390293</p>
+<p><span class="glyphicon glyphicon-envelope"></span>moi.terve@pukkipalvelu.fi</p>
+</div>
+
+<div class="col-sm-7">
+<div class="row">
+<div class="col-sm-6 form-group">
+<input class="form-control" id="name" name="name" placeholder="Nimi" type="text" required>
+</div>
+<div class="col-sm-6 form-group">
+<input class="form-control" id="email" name="email" placeholder="Sähköposti" type="text" required>
+</div>
+</div>
+<textarea class="form-control" id="comment" name="comment" placeholder="Kommentti" rows="5"></textarea><br>
+<div class="row">
+<div class="col-sm-12 form-group">
+<button class="btn btn-default pull-right" type="submit">Lähetä</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<footer class="container-fluid text-center">
+<a href="#myPage" title="Sivun alkuun">
+<span class="glyphicon glyphicon-chevron-up"></span>
+</a>
+<p>Sivun alkuun</p>
+</footer>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</body>
+
+</html>
