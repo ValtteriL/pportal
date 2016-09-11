@@ -15,18 +15,15 @@ else
 
 
 /* connect to database */
-if ($stmt = $mysqli->prepare("SELECT id, nimi, kuva, arvosana, hinta,
-            (((acos(sin((?*pi()/180)) * 
-            sin((`Latitude`*pi()/180))+cos((?*pi()/180)) * 
-            cos((`Latitude`*pi()/180)) * cos(((?- `Longitude`)* 
-            pi()/180))))*180/pi())*60*1.1515*1609.344
-            -sade
-    ) as distance
-    FROM pukit
-    HAVING distance <= 0"))
+if ($stmt = $mysqli->prepare("SELECT id, nimi, kuva, arvosana, hinta, SQRT(
+    POW(69.1 * (latitude - ?), 2) +
+    POW(69.1 * (? - longitude) * COS(latitude / 57.3), 2)
+    - sade
+    ) AS distance
+    FROM pukit HAVING distance <= 0")
 {
     /* fetch results - should we request only suitable ones somehow? YES if possible */
-    $stmt->bind_param('ddd', $latitude, $latitude, $longitude);
+    $stmt->bind_param('ddd', $latitude, $longitude);
     $stmt->execute();   // Execute the prepared query.
 
     

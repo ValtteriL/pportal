@@ -4,8 +4,10 @@ CREATE USER 'testuser'@'localhost' IDENTIFIED BY 'example';
 
 CREATE TABLE pportal.pukit (
     id INT NOT NULL AUTO_INCREMENT,
+    fname VARCHAR(15) NOT NULL,
+    lname VARCHAR(15) NOT NULL,
     age INT NOT NULL,
-    puh VARCHAR(10) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
     email VARCHAR(50) NOT NULL,
     latitude DECIMAL(10,8) NOT NULL,
     longitude DECIMAL(11,8) NOT NULL,
@@ -13,7 +15,8 @@ CREATE TABLE pportal.pukit (
     description VARCHAR(500),
     image CHAR(4),
     password CHAR(128) NOT NULL,
-    rating INT,
+    noratings INT,
+    nopoints INT,
     suomi BOOLEAN,
     ruotsi BOOLEAN,
     englanti BOOLEAN,
@@ -25,12 +28,12 @@ CREATE TABLE pportal.pukit (
 CREATE TABLE pportal.customers (
     id INT NOT NULL AUTO_INCREMENT,
     idpukki INT NOT NULL,
-    firstname VARCHAR(15) NOT NULL,
-    lastname VARCHAR(15) NOT NULL,
+    fname VARCHAR(15) NOT NULL,
+    lname VARCHAR(15) NOT NULL,
     email VARCHAR(50) NOT NULL,
     rating INT,
     kommentti VARCHAR(300),
-    puh VARCHAR(10) NOT NULL,
+    phone VARCHAR(10) NOT NULL,
     PRIMARY KEY(id)
 );
 
