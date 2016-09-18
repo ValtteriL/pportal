@@ -1,0 +1,23 @@
+Asiakkaan näkökulmasta:
++ näkee vapaat ajat
++ voi järjestää pukit vapaiden aikojen perusteella
++ ei tarvitse kommunikoida pukin kanssa
++ kuitenkin pukin yhteystiedot esillä
+
+Pukin näkökulmasta:
++ saa keikkoja automaattisesti
+- ei voi itse sumplia
+
+=> aikataulu vapaaehtoinen käyttää, mutta defaulttina päällä
+
+
+Google maps api laskee välimatkoihin menevän ajan
+voidaan lisätä pelivara
+Data pitää saada tallennettua tietokantaan
+
+Tietokantaan:
+pukki, ajankohta, osoite
+pukkiId INT, ajankohta DATETIME, osoite VARCHAR(35)
+
+
+Tilauksen lisätiedot varmaan samaa tietokantaan tilausten kanssa, pukilla täytyy olla pääsy lisätietoihin
