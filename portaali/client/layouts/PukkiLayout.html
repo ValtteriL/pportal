@@ -1,9 +1,12 @@
 <template name="PukkiLayout">
     {{> NavBar}}
     <main>
-        <h1>Profiili</h1>
-        <p>Tähän tulee kaikki maholliset muokkausjutut</p>
-        <p>Ja näitä profiileja pystyy myös sitten selaamaan ja linkittämään, workingonit</p>
+    <h1>Profiili</h1>
+    <p>Tähän tulee kaikki maholliset muokkausjutut</p>
+    <p>Ja näitä profiileja pystyy myös sitten selaamaan ja linkittämään, workingonit</p>
+    <div class="keskijakauma">
+        {{> quickForm collection='Meteor.users' template="bootstrap3-horizontal" label-class="col-sm-2" input-col-class="col-sm-10" id="profiiliForm" type='update' }}
+    </div>
     </main>
     {{> Footer}}
 </template>
