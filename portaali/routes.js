@@ -7,55 +7,72 @@ FlowRouter.route('/', {
 });
 
 FlowRouter.route('/pukiksi', {
-    name: 'home',
+    name: 'pukiksi',
     action() {
         BlazeLayout.render('DefaultLayout', {main: 'Pukiksi'});
     }
 });
 
 FlowRouter.route('/tietoa', {
-    name: 'home',
+    name: 'tietoa',
     action() {
         BlazeLayout.render('DefaultLayout', {main: 'Tietoa'});
     }
 });
 
+FlowRouter.route('/ota-yhteytta', {
+    name: 'otayhteytta',
+    action() {
+        BlazeLayout.render('DefaultLayout', {main: 'OtaYhteytta'});
+    }
+});
+
 FlowRouter.route('/yritys', {
-    name: 'home',
+    name: 'yritys',
     action() {
         BlazeLayout.render('DefaultLayout', {main: 'Yritys'});
     }
 });
 
 FlowRouter.route('/rekisteroidy', {
-    name: 'home',
+    name: 'rekisteroidy',
     action() {
         BlazeLayout.render('DefaultLayout', {main: 'Rekisteroidy'});
     }
 });
 
 FlowRouter.route('/kirjaudu', {
-    name: 'home',
+    name: 'kirjaudu',
     action() {
         BlazeLayout.render('DefaultLayout', {main: 'Kirjaudu'}); 
+    }
+});
+
+FlowRouter.route('/profiili/:username', {
+    name: 'profiili',
+    action: function(params) {
+        BlazeLayout.render('DefaultLayout', {main: 'Profiili'}); 
     }
 });
 
 
 // route pages using TilausLayout
 FlowRouter.route('/tilaa', {
-    name: 'home',
+    name: 'tilaa',
     action() {
         BlazeLayout.render('TilausLayout'); 
     }
 });
 
 // route pages using PukkiLayout
-FlowRouter.route('/profiili', {
-    name: 'home',
+FlowRouter.route('/oma-sivu', {
+    name: 'omasivu',
     action() {
-        BlazeLayout.render('PukkiLayout'); 
+        if (Meteor.userId()) {
+            BlazeLayout.render('PukkiLayout');
+        } else {
+            FlowRouter.go('kirjaudu');
+        }
     }
 });
-
 

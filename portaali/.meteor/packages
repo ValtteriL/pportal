@@ -32,8 +32,9 @@ zimme:active-route
 check
 fortawesome:fontawesome
 jeremy:geocomplete
-accounts-base
 accounts-password
 useraccounts:unstyled
 
 aldeed:template-extension
+
+#lepozepo:cloudinary

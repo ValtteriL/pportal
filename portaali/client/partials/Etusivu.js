@@ -1,7 +1,8 @@
 Template.Etusivu.onCreated(function() {
+
     // Load Google Maps
     GoogleMaps.load({
-        key: 'GOOGLE API KEY',
+        key: Meteor.settings.public.googlePlacesAutocomplete, // get api key from settings
         libraries: 'places'  // also accepts an array if you need more than one
     });
 });

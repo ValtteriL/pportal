@@ -1,18 +1,4 @@
-// TODO muutetaan oikea datatyppi
-ToimiAlue = new SimpleSchema({
-    origo: {
-        type: String
-    },
-    sade: {
-        type: String
-    }
-});
-
 ProfiiliSchema = new SimpleSchema({
-    toimialue: {
-        label: "Toimialue (tää tulee erilailla)",
-        type: ToimiAlue
-    },
     kuvaus: {
         type: String,
         label: "Kuvaus",
