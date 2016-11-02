@@ -14,3 +14,13 @@ Template.Etusivu.onRendered(function() {
         }
     });
 });
+
+
+Template.Etusivu.events({
+    'submit form'(event) {
+        event.preventDefault();
+
+        console.log(addressInput.value);
+        addressInput.value = '';
+    }
+});
