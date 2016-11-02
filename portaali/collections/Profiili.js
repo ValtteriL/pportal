@@ -38,4 +38,4 @@ ProfiiliSchema = new SimpleSchema({
     }
 });
 
-Meteor.users.attachSchema(ProfiiliSchema);
+//Meteor.users.attachSchema(ProfiiliSchema);

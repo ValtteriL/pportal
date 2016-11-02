@@ -20,7 +20,7 @@ Template.Etusivu.events({
     'submit form'(event) {
         event.preventDefault();
 
-        console.log(addressInput.value);
+        Bert.alert(addressInput.value, 'default');
         addressInput.value = '';
     }
 });

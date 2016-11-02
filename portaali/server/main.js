@@ -10,3 +10,4 @@ Cloudinary.config({
     api_key: Meteor.settings.private.cloudKey,
     api_secret: Meteor.settings.private.cloudSecret
 });
+
