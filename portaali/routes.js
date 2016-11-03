@@ -76,3 +76,11 @@ FlowRouter.route('/oma-sivu', {
     }
 });
 
+// logout, login
+FlowRouter.route('/kirjaudu-ulos', {
+    name: 'uloskirjautuminen',
+    action() {
+        Accounts.logout();
+        FlowRouter.go('/');
+    }
+});
