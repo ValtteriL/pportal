@@ -11,6 +11,11 @@ Schema.ProfiiliSchema = new SimpleSchema({
         optional: true,
         label: "Sukunimi"
     },
+    hasProfilePic: {
+        type: Boolean,
+        defaultValue: false,
+        optional: true,
+    },
     terms: {
         type: Boolean,
         optional: true,
@@ -134,6 +139,26 @@ Schema.User = new SimpleSchema({
     heartbeat: {
         type: Date,
         optional: true
+    }
+});
+
+Meteor.methods({
+    // mark hasProfilePic to true
+    addProfilePic: function(userId, currentState) {
+        Meteor.users.update(userId, {
+            $set: {
+                "profile.hasProfilePic": true
+            }
+        });
+    },
+
+    // mark hasProfilePic to as false
+    removeProfilePic: function(userId, currentState) {
+        Meteor.users.update(userId, {
+            $set: {
+                "profile.hasProfilePic": false
+            }
+        });
     }
 });
 

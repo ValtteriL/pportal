@@ -10,3 +10,9 @@ Meteor.publish('singlePukki', function(id){
     check(id, String);
     return Meteor.users.find({_id: id}, {fields: {profile: 1}});
 });
+
+
+// Oma sivu
+Meteor.publish('omaSivu', function(id){
+    return Meteor.users.find({_id: id}, {fields: {profile: 1}});
+});
