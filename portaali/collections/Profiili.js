@@ -16,6 +16,10 @@ Schema.ProfiiliSchema = new SimpleSchema({
         defaultValue: false,
         optional: true,
     },
+    picVersion: {
+        type: String,
+        optional: true,
+    },
     terms: {
         type: Boolean,
         optional: true,
@@ -144,10 +148,11 @@ Schema.User = new SimpleSchema({
 
 Meteor.methods({
     // mark hasProfilePic to true
-    addProfilePic: function(userId, currentState) {
+    addProfilePic: function(userId, version) {
         Meteor.users.update(userId, {
             $set: {
-                "profile.hasProfilePic": true
+                "profile.hasProfilePic": true,
+                "profile.picVersion": version
             }
         });
     },

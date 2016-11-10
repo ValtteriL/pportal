@@ -9,17 +9,22 @@ Template.Profiili.onCreated(function() {
 Template.PukkiLayout.events({
     "change input[type='file']": function(e) {
         files = e.currentTarget.files;
-        Cloudinary.upload( files, { public_id: Meteor.userId(), err:function(e){console.info(e)}, res:function(e){console.info(e)} })
+        Cloudinary.upload( files, { public_id: Meteor.userId() }, function(err, res) {
+            if(err) {
+                console.log(err);
+                Bert.alert( err, 'danger' );
+            } else { 
+                Meteor.call('addProfilePic', Meteor.userId(), res.version);
+            } 
+        });
     },
     "click .poistonappi": function(e) {
-        console.log("poistonappia painettu!");
+        Meteor.call("c.delete_by_public_id", Meteor.userId());
         Meteor.call('removeProfilePic', Meteor.userId());
     },
     "click .lisaysnappi": function(e) {
-        console.log("lisaysnappia painettu!");
-        Meteor.call('addProfilePic', Meteor.userId());
+        Bert.alert("Coming soon!!");
     }
-
 });
 
 Template.PukkiLayout.helpers({
