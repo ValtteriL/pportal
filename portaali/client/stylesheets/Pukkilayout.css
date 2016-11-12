@@ -1,0 +1,6 @@
+.profile-image-holder {position: relative;}
+.profile-image-holder .nappi{
+    position: absolute;
+    bottom: 30px; /*your button position*/
+    left: 153px; /*your button position*/
+}

@@ -1,0 +1,67 @@
+<template name="Profiili">
+    <div class="container-fluid text-center">
+        <div class="row">
+            <div class="col-md-6">
+                {{#if pukki.profile.hasProfilePic}}
+                <img width="250" src="{{c.url pukki._id version=pukki.profile.picVersion}}">
+                {{else}}
+                <img width="250" src="{{c.url 'default'}}">
+                {{/if}}
+
+                <h1>{{pukki.profile.name}} {{pukki.profile.lastname}}</h1>
+                <h2>
+                {{#if pukki.profile.arvosana}}
+                {{pukki.profile.arvosana}}
+                {{else}}
+                ?{{/if}}/5 tähteä</h2>
+
+                {{#if pukki.profile.kielitaito}}
+                <p>Kielitaito: </p>
+                <ul>
+                    {{#each kieli in pukki.profile.kielitaito}}
+                    <li>{{kieli}}</li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+
+                {{#if pukki.profile.kuvaus}}
+                <p>Kuvaus: {{pukki.profile.kuvaus}}</p>
+                {{/if}}
+
+                {{#if pukki.profile.hinta}}
+                <p>Hinta: {{pukki.profile.hinta}}</p>
+                {{/if}}
+            </div>
+            <div class="col-md-6">
+                <h1>Kalenteriosio</h1>
+                <table class="table">
+                    <tr>
+                        <td>Aika</td>
+                        <td>Joku</td>
+                    </tr>
+                    <tr>
+                        <td>00.00-07.59</td>
+                        <td><button class="btn btn-primary">Varaa pukki</button></td>
+                    </tr>
+                    <tr>
+                        <td>08.00-15.59</td>
+                        <td><button class="btn btn-primary">Varaa pukki</button></td>
+                    </tr>
+                    <tr>
+                        <td>16.00-23.59</td>
+                        <td><button class="btn btn-primary">Varaa pukki</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Kommentit</h1>
+                <div class="col-md-12">
+                    <h3>Nimimerkki: Olle</h3>
+                    <p>Kommentti: Hyvä pukki oli!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -69,7 +69,18 @@ FlowRouter.route('/oma-sivu', {
     name: 'omasivu',
     action() {
         if (Meteor.userId()) {
-            BlazeLayout.render('PukkiLayout');
+            BlazeLayout.render('PukkiLayout', {main: 'OmaSivu'});
+        } else {
+            FlowRouter.go('kirjaudu');
+        }
+    }
+});
+
+FlowRouter.route('/asetukset', {
+    name: 'asetukset',
+    action() {
+        if (Meteor.userId()) {
+            BlazeLayout.render('PukkiLayout', {main: 'Asetukset'});
         } else {
             FlowRouter.go('kirjaudu');
         }

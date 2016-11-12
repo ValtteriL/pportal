@@ -1,0 +1,68 @@
+<template name="OmaSivu">
+    <div class="container-fluid">
+        <h3>Julkinen <a href="/profiili/{{omaprofiili._id}}">profiili</a></h3>
+        <div class="row">
+            <div class="col-md-6">
+                <i class="fa fa-pencil"></i>
+                <div class="profile-image-holder">
+                    {{#if omaprofiili.profile.hasProfilePic}}
+                    <img width="250" src="{{c.url userId version=omaprofiili.profile.picVersion}}">
+                    {{#if editMode}}
+                    <button class="nappi poistonappi btn btn-secondary">Poista kuva</button>
+                    {{/if}}
+                    {{else}}
+                    <img width="250" src="{{c.url 'default'}}">
+                    {{#if editMode}}
+                    <button class="nappi lisaysnappi btn btn-secondary">Lisää kuva</button>
+                    <form method="POST">
+                        <input type="file" accept="image/*">
+                    </form>
+                    {{/if}}
+                    {{/if}}
+                </div>
+
+                {{#if editMode}}
+                {{> quickForm collection='Meteor.users' template="bootstrap3-horizontal" label-class="col-sm-2" input-col-class="col-sm-10" id="profiiliForm" type="update" doc=user fields="profile.kielitaito, profile.kuvaus, profile.automaatio, profile.kulkuvaline, profile.hinta" }}
+                {{else}}
+                <h1>{{omaprofiili.profile.name}} {{omaprofiili.profile.lastname}}</h1>
+
+                {{#if omaprofiili.profile.kielitaito}}
+                <p>Kielitaito: </p>
+                <ul>
+                    {{#each kieli in omaprofiili.profile.kielitaito}}
+                    <li>{{kieli}}</li>
+                    {{/each}}
+                </ul>
+                {{/if}}
+
+                {{#if omaprofiili.profile.kuvaus}}
+                <p>Kuvaus: {{omaprofiili.profile.kuvaus}}</p>
+                {{/if}}
+
+                {{#if omaprofiili.profile.hinta}}
+                <p>Hinta: {{omaprofiili.profile.hinta}}</p>
+                {{/if}}
+                {{/if}}
+            </div>
+            <div class="col-md-6">
+                <div>
+                    <h1>Yleiset tiedot</h1>
+                    <p>Profiili: Aktiivinen</p>
+                </div>
+                <div>
+                    <h1>Saadut keikat</h1>
+                    <p>Sinulla on z tilausta</p>
+                    <p>(f) uutta</p>
+                </div>
+                <div>
+                    <h1>Statistiikkaa, sivun katselut ym</h1>
+                    <p>Sivuasi katsottu tänään: x kertaa</p>
+                    <p>Sivua katsottu kaikkiaan y kertaa</p>
+                </div>
+                <div>
+                    <button class="btn btn-secondary">Jaa sivu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,25 +1,7 @@
 <template name="PukkiLayout">
     {{> NavBar}}
     <main>
-    <h1>Profiili</h1>
-    <h3>Profiilin julkinen url: /profiili/{{omaprofiili._id}}</h3>
-    <div class="row">
-        <div class="col-md-4"></div>
-        <div class="keskijakauma col-md-8">
-            {{#if omaprofiili.profile.hasProfilePic}}
-            <img width="250" src="{{c.url userId version=omaprofiili.profile.picVersion}}">
-            <button class="poistonappi btn btn-secondary">Poista kuva</button>
-            {{else}}
-            <img width="250" src="{{c.url 'default'}}">
-            <button class="lisaysnappi btn btn-secondary">Lisää kuva</button>
-            <form method="POST">
-                <input type="file">
-            </form>
-            {{/if}}
-
-            {{> quickForm collection='Meteor.users' template="bootstrap3-horizontal" label-class="col-sm-2" input-col-class="col-sm-10" id="profiiliForm" type="update" doc=user fields="profile.kielitaito, profile.kuvaus, profile.automaatio, profile.kulkuvaline, profile.hinta" }}
-        </div>
-    </div>
+        {{> Template.dynamic template=main}}
     </main>
     {{> Footer}}
 </template>
