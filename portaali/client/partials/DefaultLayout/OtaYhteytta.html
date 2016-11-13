@@ -1,31 +1,31 @@
 <template name="OtaYhteytta">
-    
-    <div id="otayhteyttä" class="container-fluid text-center">
-			<h2>Ota yhteyttä</h2>
-			<div class="row">
-				<div class="col-sm-3">
-					<p><span class="glyphicon glyphicon-map-marker"></span>Turku, Fin</p>
-					<p><span class="glyphicon glyphicon-phone"></span>020390293</p>
-					<p><span class="glyphicon glyphicon-envelope"></span>pukki.muori@pukkipalvelu.fi</p>
-				</div>
 
-				<div class="col-sm-8">
-				<div class="row">
-				<div class="col-sm-6 form-group">
-					<input class="form-control" id="name" name="name" placeholder="Nimi" type="text" required>
-				</div>
-				<div class="col-sm-6 form-group">
-					<input class="form-control" id="email" name="email" placeholder="Sähköposti" type="text" required>
-				</div>
-				</div>
-				<textarea class="form-control" id="comment" name="comment" placeholder="Kommentti" rows="5"></textarea><br>
-					<div class="row">
-						<div class="col-sm-12 form-group">
-							<button class="btn btn-default pull-right" type="submit">Lähetä</button>
-						</div>
-					</div>
-				</div>
-			</div>
+    <div id="otayhteyttä" class="container-fluid text-center">
+        <h2>Ota yhteyttä</h2>
+        <div class="row">
+            <div class="col-sm-3">
+                <p><span class="glyphicon glyphicon-map-marker"></span>Turku, Fin</p>
+                <p><span class="glyphicon glyphicon-phone"></span>020390293</p>
+                <p><span class="glyphicon glyphicon-envelope"></span>pukki.muori@pukkipalvelu.fi</p>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col-sm-6 form-group {{nameClass}}">
+                        <input class="form-control" id="name" name="name" placeholder="Nimi" type="text" required>
+                    </div>
+                    <div class="col-sm-6 form-group {{emailClass}}">
+                        <input class="form-control" id="email" name="email" placeholder="Sähköposti" type="text" required>
+                    </div>
+                </div>
+                <textarea class="form-control" id="comment" name="comment" placeholder="Kommentti" rows="5"></textarea><br>
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <button class="btn btn-default pull-right" id="lahetaBtn" type="submit">Lähetä</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    
+
 </template>

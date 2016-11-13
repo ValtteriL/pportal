@@ -146,25 +146,5 @@ Schema.User = new SimpleSchema({
     }
 });
 
-Meteor.methods({
-    // mark hasProfilePic to true
-    addProfilePic: function(userId, version) {
-        Meteor.users.update(userId, {
-            $set: {
-                "profile.hasProfilePic": true,
-                "profile.picVersion": version
-            }
-        });
-    },
-
-    // mark hasProfilePic to as false
-    removeProfilePic: function(userId, currentState) {
-        Meteor.users.update(userId, {
-            $set: {
-                "profile.hasProfilePic": false
-            }
-        });
-    }
-});
 
 Meteor.users.attachSchema(Schema.User);

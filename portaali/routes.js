@@ -60,7 +60,7 @@ FlowRouter.route('/profiili/:username', {
 FlowRouter.route('/tilaa', {
     name: 'tilaa',
     action() {
-        BlazeLayout.render('TilausLayout'); 
+        BlazeLayout.render('TilausLayout', {main: 'Pukit'}); 
     }
 });
 

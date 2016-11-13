@@ -1,13 +1,12 @@
 // tee uus collection
-Viestit = new Mongo.Collection('Viestit');
+Halytykset = new Mongo.Collection('Halytykset');
 
 // tee schema sille
-Viestit.schema = new SimpleSchema({
-    name: {type: String, max: 25},
+Halytykset.schema = new SimpleSchema({
     email: {type: String, max: 255},
-    comment: {type: String, max: 3000},
+    address: {type: String, max: 255},
     createdAt: {type: Date}
 });
 
 // käytä schemaa aina validaatioissa kun heitetään insert,update tai upsert
-Viestit.attachSchema(Viestit.schema);
+Halytykset.attachSchema(Halytykset.schema);

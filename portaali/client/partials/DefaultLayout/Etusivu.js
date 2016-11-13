@@ -17,10 +17,8 @@ Template.Etusivu.onRendered(function() {
 
 
 Template.Etusivu.events({
-    'submit form'(event) {
-        event.preventDefault();
-
-        Bert.alert(addressInput.value, 'default');
-        addressInput.value = '';
+    'click .etsiNappi': function() {
+        Session.set("address", $('#addressInput').val());
+        FlowRouter.go('/tilaa');
     }
 });

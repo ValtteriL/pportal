@@ -14,14 +14,15 @@ Template.OmaSivu.events({
                 console.log(err);
                 Bert.alert( err, 'danger' );
             } else { 
-                Meteor.call('addProfilePic', Meteor.userId(), res.version);
+                Meteor.call('addProfilePic', res.version);
             } 
         });
     },
     "click .poistonappi": function(e) {
         Meteor.call("c.delete_by_public_id", Meteor.userId());
-        Meteor.call('removeProfilePic', Meteor.userId());
-    }, "click .lisaysnappi": function(e) {
+        Meteor.call('removeProfilePic');
+    },
+    "click .lisaysnappi": function(e) {
         Bert.alert("Coming soon!!");
     }
 });

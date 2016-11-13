@@ -1,0 +1,57 @@
+<template name="Pukit">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse-reorder" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><button class="btn arvoBtn">Arvostelu</button></li>
+                    <li>
+                        <form>
+                            <label class="checkbox-inline"><input id="suomicheck" type="checkbox" name="suomi" value="Suomi">Suomi</label>
+                            <label class="checkbox-inline"><input id="ruotsicheck" type="checkbox" name="ruotsi" value="Ruotsi"> Ruotsi</label>
+                            <label class="checkbox-inline"><input id="englanticheck" type="checkbox" name="englanti" value="Englanti">Englanti</label>
+                            <label class="checkbox-inline"><input id="venajacheck" type="checkbox" name="venäjä" value="Venäjä">Venäjä</label>
+                        </form>
+                    </li>
+                    <li><button class="btn">Aika</button></li>
+                    <li><button class="btn">Hinta</button></li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div>
+    </nav>
+
+    <div class="container-fluid text-center">
+        {{#each pukki in pukit}}
+        <div class="col-md-4">
+            {{#if pukki.profile.hasProfilePic}}
+            <img width="250" src="{{c.url pukki._id version=pukki.profile.picVersion}}">
+            {{else}}
+            <img width="250" src="{{c.url 'default'}}">
+            {{/if}}
+            <h1>{{pukki.profile.name}} {{pukki.profile.lastname}}</h1>
+            <p>?/5</p>
+            <button class="btn btn-secondary profileBtn" value="{{pukki._id}}">Profiili</button>
+            <button class="btn btn-primary">Varaa pukki</button>
+        </div>
+        {{else}}
+        <h1>Alueelta ei löytynyt yhtään pukkia</h1>
+        <h1>{{address}}</h1>
+        <p>Alla voit asettaa hälytyksen, joka ilmoittaa kun pukki on saatavilla alueellasi</p>
+        <div class="row">
+            <div class="col-sm-10 form-group {{emailClass}}">
+                <input class="form-control" id="email" name="email" placeholder="Sähköposti" type="text" required>
+            </div>
+            <div class="col-sm-2 form-group">
+                <button class="btn btn-default pull-left asetusNappi" type="submit">Aseta hälytys</button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</template>

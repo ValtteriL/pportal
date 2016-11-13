@@ -12,7 +12,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    {{#unless currentUser}}
                     <li><a href="/pukiksi">Pukiksi</a></li>
+                    {{/unless}}
                     <li><a href="/yritys">Yritys</a></li>
                     <li><a href="/tietoa">Tietoa</a></li>
                     <li><a href="/ota-yhteytta">Ota yhteyttä</a></li>
