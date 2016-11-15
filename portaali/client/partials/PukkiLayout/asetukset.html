@@ -4,16 +4,16 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="row">
-                    <div class="col-sm-12 form-group">
+                    <div class="col-sm-12 form-group {{passwordClass}}">
                         <label for="password" class="col-sm-2 control-label">Salasana</label>
                         <div class="col-sm-10">
-                            <input class="form-control pwdfield" id="password" name="password" placeholder="Salasana" type="password" required>
+                            <input class="form-control pwdfield {{passwordClass}}" id="password" name="password" placeholder="Salasana" type="password" required>
                         </div>
                     </div>
                 </div>
                 {{#if passwordChange}}
                 <div class="row">
-                    <div class="col-sm-12 form-group">
+                    <div class="col-sm-12 form-group {{passwordClass}}">
                         <label for="password-verify" class="col-sm-2 control-label">Salasana uudestaan</label>
                         <div class="col-sm-10">
                             <input class="form-control pwdfield-verify" id="password-verify" name="password-verify" placeholder="Salasana uudestaan" type="password" required>
@@ -22,7 +22,7 @@
                 </div>
                 {{#if passwordsMatch}}
                 <div class="row">
-                    <div class="col-sm-12 form-group">
+                    <div class="col-sm-12 form-group {{oldPasswordClass}}">
                         <label for="password-old" class="col-sm-2 control-label">Nykyinen salasana</label>
                         <div class="col-sm-10">
                             <input class="form-control pwdfield-old" id="password-old" name="password-old" placeholder="Nykyinen salasana" type="password" required>

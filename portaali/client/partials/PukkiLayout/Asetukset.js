@@ -1,6 +1,8 @@
 Template.Asetukset.onCreated(function() {
     this.passwordChange = new ReactiveVar(false);
     this.passwordsMatch = new ReactiveVar(false);
+    this.passwordClass = new ReactiveVar('');
+    this.oldPasswordClass = new ReactiveVar('');
 });
 
 Template.Asetukset.events({
@@ -12,13 +14,19 @@ Template.Asetukset.events({
             template.passwordChange.set(false);
             template.passwordsMatch.set(false);
         }
+        if ($("#password-verify").val() != '' && $("#password-verify").val() != e.currentTarget.value) {
+            template.passwordsMatch.set(false);
+            template.passwordClass.set('has-error');
+        }
     },
     'blur .pwdfield-verify': function(e, template) {
         var pass = $("#password").val();
         if(e.currentTarget.value != pass) {
             template.passwordsMatch.set(false);
+            template.passwordClass.set('has-error');
         } else {
             template.passwordsMatch.set(true);
+            template.passwordClass.set('has-success');
         }
     },
     'keyup .pwdfield-verify': function(e, template) {
@@ -30,24 +38,33 @@ Template.Asetukset.events({
         }
     },
     'click .submitsettings': function(e, template) {
-        if(template.passwordChange.get() && template.passwordsMatch.get()) {
-            // user wants to change password
-            var digest = Package.sha.SHA256($('#password-old').val());
-            Meteor.call('checkPassword', digest, function(err, result) {
-                if(result) {
-                    Accounts.changePassword($('#password-old').val(), $('#password').val(), function(err) {
-                        if(err) {
-                            Bert.alert(err.message, 'danger');
-                        } else {
-                            Bert.alert('Asetukset tallennettu', 'success');
-                        }
-                    });
-                } else {
-                    Bert.alert("Nykyinen salasana on väärin", 'danger');
-                }
-            });
+        if(template.passwordChange.get()) {
+            if(template.passwordsMatch.get()) {
+                // user wants to change password
+                var digest = Package.sha.SHA256($('#password-old').val());
+                Meteor.call('checkPassword', digest, (err, res) => {
+                    if(err) {
+                        template.oldPasswordClass.set('has-error');
+                        Bert.alert(err.message, 'danger');
+                    } else {
+                        Accounts.changePassword($('#password-old').val(), $('#password').val(), (err, res) => {
+                            if(err) {
+                                Bert.alert(err.message, 'danger');
+                            } else {
+                                $('#password').val('');
+                                $('#password-old').val('');
+                                $('#password-verify').val('');
+                                Bert.alert('Asetukset tallennettu', 'success');
+                            }
+                        });
+                    }
+                });
+            } else {
+                Bert.alert("Salasanat eivät täsmää", 'danger');
+            }
         } else {
             // password not changed
+            // TODO: muiden asetusten tallennus
             Bert.alert('Asetukset tallennettu', 'success');
         }
     }
@@ -59,5 +76,11 @@ Template.Asetukset.helpers({
     },
     passwordsMatch: function() {
         return Template.instance().passwordsMatch.get();
+    },
+    passwordClass: function() {
+        return Template.instance().passwordClass.get();
+    },
+    oldPasswordClass: function() {
+        return Template.instance().oldPasswordClass.get();
     }
 });
