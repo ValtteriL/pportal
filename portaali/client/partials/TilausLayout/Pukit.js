@@ -48,7 +48,7 @@ Template.Pukit.events({
     'click #englanticheck': function(e, template) { 
         template.englanti.set(!template.englanti.get());
     }, 
-    'click #ruotsicheck': function(e, template) { 
+    'click #venajacheck': function(e, template) { 
         template.venaja.set(!template.venaja.get());
     }
 });
@@ -56,12 +56,26 @@ Template.Pukit.events({
 
 Template.Pukit.helpers({
     pukit: ()=> {
-        // TODO: kaikki filtterit
-        // applying language filters
+
+        // apply language filter
+        var selector = [];
         if(Template.instance().suomi.get()) {
-            return Meteor.users.find({'profile.kielitaito': 'suomi'}); 
-        } else {    
-            return Meteor.users.find(); // find the one pukki from the collection
+            selector.push('suomi');
+        }
+        if(Template.instance().ruotsi.get()) {
+            selector.push('ruotsi');
+        }
+        if(Template.instance().englanti.get()) {
+            selector.push('englanti');
+        }
+        if(Template.instance().venaja.get()) {
+            selector.push('venäjä');
+        }
+       
+        if(selector.length > 0) {
+            return Meteor.users.find({'profile.kielitaito': { $all: selector}}); // find the one pukki from the collection
+        } else {
+            return Meteor.users.find();
         }
     },
     address: function() {
