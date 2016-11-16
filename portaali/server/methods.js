@@ -23,7 +23,7 @@ Meteor.methods({
     },
 
     // check password
-    checkPassword: function(digest) {
+    checkPassword: function({digest}) {
         check(digest, String);
         if(this.userId) { 
             var user = Meteor.user();
@@ -38,14 +38,14 @@ Meteor.methods({
     },
 
     // ota yhteyttä
-    otaYhteytta: function(sentname, sentemail, sentcomment) {
+    otaYhteytta: function({sentname, sentemail, sentcomment}) {
         // ei tarvi tarkistella koska käytetään schemaa
 
         // heitä tietokantaan
         Viestit.insert({name: sentname, email: sentemail, comment: sentcomment, createdAt: new Date()}, function(err, res) {
             if(err) {
                 console.log(err);
-                throw new Meteor.Error('Tietokanta ei ottanut vastaan viestiäsi');
+                throw new Meteor.Error('Tietokanta ei ottanut vastaan viestiä');
             } else {
                 return true;
             }
@@ -53,14 +53,14 @@ Meteor.methods({
     },
 
     // aseta hälytys
-    asetaHalytys: function(sentemail, sentaddress) {
+    asetaHalytys: function({sentemail, sentaddress}) {
         // ei tarvi tarkistella koska käytetään schemaa
         
         // heitä tietokantaan
         return Halytykset.insert({email: sentemail, address: sentaddress, createdAt: new Date()}, function(err, res) {
             if(err) {
                 console.log(err);
-                return false;
+                throw new Meteor.Error('Tietokanta ei ottanut vastaan hälytystä');
             } else {
                 return true;
             }

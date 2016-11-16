@@ -41,8 +41,8 @@ Template.Asetukset.events({
         if(template.passwordChange.get()) {
             if(template.passwordsMatch.get()) {
                 // user wants to change password
-                var digest = Package.sha.SHA256($('#password-old').val());
-                Meteor.call('checkPassword', digest, (err, res) => {
+                var digesti = Package.sha.SHA256($('#password-old').val());
+                Meteor.call('checkPassword', { digest: digesti }, (err, res) => {
                     if(err) {
                         template.oldPasswordClass.set('has-error');
                         Bert.alert(err.message, 'danger');

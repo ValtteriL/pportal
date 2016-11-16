@@ -54,6 +54,13 @@ FlowRouter.route('/profiili/:username', {
         BlazeLayout.render('DefaultLayout', {main: 'Profiili'}); 
     }
 });
+FlowRouter.route('/hallinta', {
+    name: 'hallinta',
+    action() {
+        BlazeLayout.render('DefaultLayout', {main: 'Hallinta'}); 
+    }
+});
+
 
 
 // route pages using TilausLayout
@@ -61,6 +68,12 @@ FlowRouter.route('/tilaa', {
     name: 'tilaa',
     action() {
         BlazeLayout.render('TilausLayout', {main: 'Pukit'}); 
+    }
+});
+FlowRouter.route('/tilaa/:username', {
+    name: 'tilaa',
+    action: function(params) {
+        BlazeLayout.render('TilausLayout', {main: 'Tilaapukki'}); 
     }
 });
 

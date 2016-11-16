@@ -2,11 +2,23 @@
     <div class="container-fluid text-center">
         <div class="row">
             <div class="col-md-6">
-                {{#if pukki.profile.hasProfilePic}}
-                <img width="250" src="{{c.url pukki._id version=pukki.profile.picVersion}}">
-                {{else}}
-                <img width="250" src="{{c.url 'default'}}">
-                {{/if}}
+
+                <div class="profile-image-holder">
+                    {{#if pukki.profile.hasProfilePic}}
+                    <img width="250" src="{{c.url pukki._id version=pukki.profile.picVersion}}">
+                    {{#if editMode}}
+                    <button class="nappi poistonappi btn btn-secondary">Poista kuva</button>
+                    {{/if}}
+                    {{else}}
+                    <img width="250" src="{{c.url 'default'}}">
+                    {{#if editMode}}
+                    <button class="nappi lisaysnappi btn btn-secondary">Lisää kuva</button>
+                    <form method="POST">
+                        <input type="file" accept="image/*">
+                    </form>
+                    {{/if}}
+                    {{/if}}
+                </div>
 
                 <h1>{{pukki.profile.name}} {{pukki.profile.lastname}}</h1>
                 <h2>
@@ -49,6 +61,14 @@
                     </tr>
                     <tr>
                         <td>16.00-23.59</td>
+                        <td><button class="btn btn-primary">Varaa pukki</button></td>
+                    </tr>
+                    <tr>
+                        <td>08.00-15.59</td>
+                        <td><button class="btn btn-primary">Varaa pukki</button></td>
+                    </tr>
+                    <tr>
+                        <td>08.00-15.59</td>
                         <td><button class="btn btn-primary">Varaa pukki</button></td>
                     </tr>
                 </table>

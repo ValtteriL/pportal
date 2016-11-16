@@ -25,14 +25,14 @@ Template.OtaYhteytta.events({
         } else if (template.nameClass.get() != 'has-success' || template.emailClass.get() != 'has-success') {
             Bert.alert('Lomakkeessa on virheitä', 'danger');
         } else {
-            Meteor.call('otaYhteytta', $('#name').val(), $('#email').val(), $('#comment').val(), function(err, result) {
-                if(!err) {
+            Meteor.call('otaYhteytta', { sentname: $('#name').val(), sentemail: $('#email').val(), sentcomment: $('#comment').val() }, (err, res) => {
+                if(err) {
+                    Bert.alert('Jokin meni pieleen, kokeile myöhemmin uudestaan', 'danger');
+                } else {
                     $('#name').val('');
                     $('#email').val('');
                     $('#comment').val('');
                     Bert.alert('Kiitos yhteydenotostasi!','success');
-                } else {
-                    Bert.alert('Jokin meni pieleen, kokeile myöhemmin uudestaan', 'danger');
                 }
             });
         }

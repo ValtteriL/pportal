@@ -1,7 +1,7 @@
 Template.Pukit.onCreated(function() {
     var self = this;
     self.autorun(function() {
-        self.subscribe('allPukkis'); // subscribe to only one pukki (on template level)
+        self.subscribe('allPukkis');
     });
 
     this.emailClass = new ReactiveVar('');
@@ -26,18 +26,21 @@ Template.Pukit.events({
         } else if (template.emailClass.get() != 'has-success') {
             Bert.alert('Lomakkeessa on virheitä', 'danger');
         } else {
-            Meteor.call('asetaHalytys', $('#email').val(), Session.get("address"), function(err, result) {
-                if(!err) {
+            Meteor.call('asetaHalytys', { sentemail: $('#email').val(), sentaddress: Session.get("address") }, (err, res) => {
+                if(err) {
+                    Bert.alert('Jokin meni pieleen, kokeile myöhemmin uudestaan', 'danger');
+                } else {
                     $('#email').val('');
                     Bert.alert('Hälytys asetettu', 'success');
-                } else {
-                    Bert.alert('Jokin meni pieleen, kokeile myöhemmin uudestaan', 'danger');
                 }
             });
         }
     },
     'click .profileBtn': function(e) {
         FlowRouter.go('/profiili/' + e.currentTarget.value);
+    },
+    'click .tilausBtn': function(e) {
+        FlowRouter.go('/tilaa/' + e.currentTarget.value);
     },
     'click #suomicheck': function(e, template) { 
         template.suomi.set(!template.suomi.get());
