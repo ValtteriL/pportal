@@ -1,21 +1,20 @@
 <template name="Profiili">
     <div class="container-fluid text-center">
         <div class="row">
+            {{#if ownProfile}}
+            {{/if}}
             <div class="col-md-6">
-
-                <div class="profile-image-holder">
+                <div class="profile-image-holder profile-pic">
                     {{#if pukki.profile.hasProfilePic}}
                     <img width="250" src="{{c.url pukki._id version=pukki.profile.picVersion}}">
-                    {{#if editMode}}
-                    <button class="nappi poistonappi btn btn-secondary">Poista kuva</button>
+                    {{#if ownProfile}}
+                    <div class="edit"><a href="#" id="poistonappi"><i class="fa fa-remove fa-lg"></i></a></div>
                     {{/if}}
                     {{else}}
                     <img width="250" src="{{c.url 'default'}}">
-                    {{#if editMode}}
-                    <button class="nappi lisaysnappi btn btn-secondary">Lisää kuva</button>
-                    <form method="POST">
-                        <input type="file" accept="image/*">
-                    </form>
+                    {{#if ownProfile}}
+                    <input type="file" accept="image/*" id="upload">
+                    <div class="edit"><a href="#" id="lisaysnappi"><i class="fa fa-pencil fa-lg"></i></a></div>
                     {{/if}}
                     {{/if}}
                 </div>
@@ -28,20 +27,52 @@
                 ?{{/if}}/5 tähteä</h2>
 
                 {{#if pukki.profile.kielitaito}}
-                <p>Kielitaito: </p>
+                <div class="kielitaito">
+                <p>Kielitaito: 
+                {{#if ownProfile}}
+                <span><a href="#" id="kielitaitopencil"><i class="fa fa-pencil fa-lg"></i></a></span>
+                {{/if}}
+                </p>
+                {{#if editKielitaito}}
+                {{> quickForm collection='Meteor.users' id="kielitaitoForm" type="update" doc=pukki fields="profile.kielitaito" }}
+                {{else}}
                 <ul>
-                    {{#each kieli in pukki.profile.kielitaito}}
-                    <li>{{kieli}}</li>
-                    {{/each}}
+                {{#each kieli in pukki.profile.kielitaito}}
+                <li>{{kieli}}</li>
+                {{/each}}
                 </ul>
+                {{/if}}
+                </div>
                 {{/if}}
 
                 {{#if pukki.profile.kuvaus}}
-                <p>Kuvaus: {{pukki.profile.kuvaus}}</p>
+                <div class="kuvaus">
+                <p>Kuvaus:
+                {{#if ownProfile}}
+                <span><a href="#" id="kuvauspencil"><i class="fa fa-pencil fa-lg"></i></a></span>
+                {{/if}}
+                </p>
+                {{#if editKuvaus}}
+                {{> quickForm collection='Meteor.users' id="kuvausForm" type="update" doc=pukki fields="profile.kuvaus" }}
+                {{else}}
+                <p>{{pukki.profile.kuvaus}}</p>
+                {{/if}}
+                </div>
                 {{/if}}
 
                 {{#if pukki.profile.hinta}}
-                <p>Hinta: {{pukki.profile.hinta}}</p>
+                <div class="hinta">
+                <p>Hinta: 
+                {{#if ownProfile}}
+                <span><a href="#" id="hintapencil"><i class="fa fa-pencil fa-lg"></i></a></span>
+                {{/if}}
+                </p>
+                {{#if editHinta}}
+                {{> quickForm collection='Meteor.users' id="hintaForm" type="update" doc=pukki fields="profile.hinta" }}
+                {{else}}
+                <p>{{pukki.profile.hinta}}</p>
+                {{/if}}
+                </div>
                 {{/if}}
             </div>
             <div class="col-md-6">
