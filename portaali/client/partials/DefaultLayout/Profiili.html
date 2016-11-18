@@ -4,113 +4,194 @@
             {{#if ownProfile}}
             {{/if}}
             <div class="col-md-6">
-                <div class="profile-image-holder profile-pic">
-                    {{#if pukki.profile.hasProfilePic}}
-                    <img width="250" src="{{c.url pukki._id version=pukki.profile.picVersion}}">
-                    {{#if ownProfile}}
-                    <div class="edit"><a href="#" id="poistonappi"><i class="fa fa-remove fa-lg"></i></a></div>
+                    <div class="profile-image-holder profile-pic">
+                        {{#if pukki.profile.hasProfilePic}}
+                        <img width="250" src="{{c.url pukki._id version=pukki.profile.picVersion}}">
+                        {{#if ownProfile}}
+                        <div class="edit"><a href="#" id="poistonappi"><i class="fa fa-remove fa-lg"></i></a></div>
+                        {{/if}}
+                        {{else}}
+                        <img width="250" src="{{c.url 'default'}}">
+                        {{#if ownProfile}}
+                        <input type="file" accept="image/*" id="upload">
+                        <div class="edit"><a href="#" id="lisaysnappi"><i class="fa fa-pencil fa-lg"></i></a></div>
+                        {{/if}}
+                        {{/if}}
+                    </div>
+
+                    <h1>{{pukki.profile.name}} {{pukki.profile.lastname}}</h1>
+                    <h2>
+                        {{#if pukki.profile.arvosana}}
+                        {{pukki.profile.arvosana}}
+                        {{else}}
+                        ?{{/if}}/5 tähteä</h2>
+
+                    <div class="row">
+                        {{#if pukki.profile.kielitaito}}
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">
+                                        Kielitaito
+                                    </h3>
+                                    {{#if ownProfile}}
+                                    {{#unless editKielitaito}}
+                                    <span><a href="#" id="kielitaitopencil"><i class="fa fa-pencil fa-lg"></i></a></span>
+                                    {{/unless}}
+                                    {{/if}}
+                                </div>
+                                <div class="kielitaito panel-body">
+                                    {{#if editKielitaito}}
+                                    {{> quickForm collection='Meteor.users' id="kielitaitoForm" type="update" doc=pukki fields="profile.kielitaito" }}
+                                    {{else}}
+                                    <ul>
+                                        {{#each kieli in pukki.profile.kielitaito}}
+                                        <li>{{kieli}}</li>
+                                        {{/each}}
+                                    </ul>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                        {{#if pukki.profile.hinta}}
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class = "panel-heading">
+                                    <h3 class="panel-title">
+                                        Hinta
+                                    </h3>
+                                    {{#if ownProfile}}
+                                    {{#unless editHinta}}
+                                    <span><a href="#" id="hintapencil"><i class="fa fa-pencil fa-lg"></i></a></span>
+                                    {{/unless}}
+                                    {{/if}}
+                                </div>
+                                <div class="hinta panel-body">
+                                    {{#if editHinta}}
+                                    {{> quickForm collection='Meteor.users' id="hintaForm" type="update" doc=pukki fields="profile.hinta" }}
+                                    {{else}}
+                                    <p>{{pukki.profile.hinta}}</p>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/if}}
+                    </div>
+
+                    {{#if pukki.profile.kuvaus}}
+                    <div class="panel panel-default">
+                        <div class = "panel-heading">
+                            <h3 class="panel-title">
+                                Kuvaus
+                            </h3>
+                            {{#if ownProfile}}
+                            {{#unless editKuvaus}}
+                            <span><a href="#" id="kuvauspencil"><i class="fa fa-pencil fa-lg"></i></a></span>
+                            {{/unless}}
+                            {{/if}}
+                        </div>
+
+                        <div class="kuvaus panel-body">
+                            {{#if editKuvaus}}
+                            {{> quickForm collection='Meteor.users' id="kuvausForm" type="update" doc=pukki fields="profile.kuvaus" }}
+                            {{else}}
+                            <p>{{pukki.profile.kuvaus}}</p>
+                            {{/if}}
+                        </div>
+                    </div>
                     {{/if}}
-                    {{else}}
-                    <img width="250" src="{{c.url 'default'}}">
-                    {{#if ownProfile}}
-                    <input type="file" accept="image/*" id="upload">
-                    <div class="edit"><a href="#" id="lisaysnappi"><i class="fa fa-pencil fa-lg"></i></a></div>
-                    {{/if}}
-                    {{/if}}
-                </div>
-
-                <h1>{{pukki.profile.name}} {{pukki.profile.lastname}}</h1>
-                <h2>
-                {{#if pukki.profile.arvosana}}
-                {{pukki.profile.arvosana}}
-                {{else}}
-                ?{{/if}}/5 tähteä</h2>
-
-                {{#if pukki.profile.kielitaito}}
-                <div class="kielitaito">
-                <p>Kielitaito: 
-                {{#if ownProfile}}
-                <span><a href="#" id="kielitaitopencil"><i class="fa fa-pencil fa-lg"></i></a></span>
-                {{/if}}
-                </p>
-                {{#if editKielitaito}}
-                {{> quickForm collection='Meteor.users' id="kielitaitoForm" type="update" doc=pukki fields="profile.kielitaito" }}
-                {{else}}
-                <ul>
-                {{#each kieli in pukki.profile.kielitaito}}
-                <li>{{kieli}}</li>
-                {{/each}}
-                </ul>
-                {{/if}}
-                </div>
-                {{/if}}
-
-                {{#if pukki.profile.kuvaus}}
-                <div class="kuvaus">
-                <p>Kuvaus:
-                {{#if ownProfile}}
-                <span><a href="#" id="kuvauspencil"><i class="fa fa-pencil fa-lg"></i></a></span>
-                {{/if}}
-                </p>
-                {{#if editKuvaus}}
-                {{> quickForm collection='Meteor.users' id="kuvausForm" type="update" doc=pukki fields="profile.kuvaus" }}
-                {{else}}
-                <p>{{pukki.profile.kuvaus}}</p>
-                {{/if}}
-                </div>
-                {{/if}}
-
-                {{#if pukki.profile.hinta}}
-                <div class="hinta">
-                <p>Hinta: 
-                {{#if ownProfile}}
-                <span><a href="#" id="hintapencil"><i class="fa fa-pencil fa-lg"></i></a></span>
-                {{/if}}
-                </p>
-                {{#if editHinta}}
-                {{> quickForm collection='Meteor.users' id="hintaForm" type="update" doc=pukki fields="profile.hinta" }}
-                {{else}}
-                <p>{{pukki.profile.hinta}}</p>
-                {{/if}}
-                </div>
-                {{/if}}
             </div>
             <div class="col-md-6">
-                <h1>Kalenteriosio</h1>
-                <table class="table table-striped">
-                    <tr>
-                        <td>Aika</td>
-                        <td>Joku</td>
-                    </tr>
-                    <tr>
-                        <td>00.00-07.59</td>
-                        <td><button class="btn btn-primary">Varaa pukki</button></td>
-                    </tr>
-                    <tr>
-                        <td>08.00-15.59</td>
-                        <td><button class="btn btn-primary">Varaa pukki</button></td>
-                    </tr>
-                    <tr>
-                        <td>16.00-23.59</td>
-                        <td><button class="btn btn-primary">Varaa pukki</button></td>
-                    </tr>
-                    <tr>
-                        <td>08.00-15.59</td>
-                        <td><button class="btn btn-primary">Varaa pukki</button></td>
-                    </tr>
-                    <tr>
-                        <td>08.00-15.59</td>
-                        <td><button class="btn btn-primary">Varaa pukki</button></td>
-                    </tr>
-                </table>
+                <div class="panel panel-default">
+                    <div class = "panel-heading">
+                        <h3 class="panel-title">
+                            Jouluaatto 24.12
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>Aika</td>
+                                <td>Joku</td>
+                            </tr>
+                            <tr>
+                                <td>00.00-07.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>08.00-15.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>16.00-23.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>08.00-15.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>08.00-15.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class = "panel-heading">
+                        <h3 class="panel-title">
+                            Joulupäivä 25.12
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <tr>
+                                <td>Aika</td>
+                                <td>Joku</td>
+                            </tr>
+                            <tr>
+                                <td>00.00-07.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>08.00-15.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>16.00-23.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>08.00-15.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                            <tr>
+                                <td>08.00-15.59</td>
+                                <td><button class="btn btn-primary">Varaa pukki</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-12">
-                <h1>Kommentit</h1>
-                <div class="col-md-12">
-                    <h3>Nimimerkki: Olle</h3>
-                    <p>Kommentti: Hyvä pukki oli!</p>
+                <div class="panel panel-default">
+                    <div class = "panel-heading">
+                        <h3 class="panel-title">
+                            Kommentit
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="col-md-12">
+                            <h3>Nimimerkki: Olle</h3>
+                            <p>Kommentti: Hyvä pukki oli!</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

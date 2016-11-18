@@ -62,4 +62,13 @@ Template.Profiili.events({
         e.preventDefault();
         template.editHinta.set(!template.editHinta.get());
     },
+    "submit #kielitaitoForm": function(e, template) {
+        template.editKielitaito.set(!template.editKielitaito.get());
+    },
+    "submit #kuvausForm": function(e, template) {
+        template.editKuvaus.set(!template.editKuvaus.get());
+    },
+    "submit #hintaForm": function(e, template) {
+        template.editHinta.set(!template.editHinta.get());
+    },
 });
