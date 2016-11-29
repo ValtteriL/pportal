@@ -5,31 +5,95 @@
                 <div>
                     <h1>Hei taas {{omaprofiili.profile.name}}!</h1>
                 </div>
-                <div class="map-container">
-                    {{> googleMap name="exampleMap" options=exampleMapOptions}}
-                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Ilmoitukset
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Jouluaatto
+                                </h3>
+                                    <span class="pull-right clickable" id="toggle-jouluaatto" data-toggle="collapse" data-target="#jouluaatto">
+                                        {{#unless toggleJouluaatto}}
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        {{else}}
+                                        <i class="glyphicon glyphicon-minus"></i>
+                                        {{/unless}}
+                                    </span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="collapse" id="jouluaatto">
+                                    <div class="map-container">
+                                        {{> googleMap name="jouluaattoMap" options=aattoMapOptions}}
+                                    </div>
+                                    {{> quickForm collection='Meteor.users' id="jouluaaatto" type="update" doc=omaprofiili fields="profile.ilmoitukset.jouluaatto" }}
+                                </div>
+                            </div>
+                        </div>
 
-                {{#if editMode}}
-                {{> quickForm collection='Meteor.users' template="bootstrap3-horizontal" label-class="col-sm-2" input-col-class="col-sm-10" id="profiiliForm" type="update" doc=user fields="profile.kielitaito, profile.kuvaus, profile.automaatio, profile.kulkuvaline, profile.hinta" }}
-                {{/if}}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Joulupäivä
+                                </h3>
+                                    <span class="pull-right clickable" id="toggle-joulupaiva" data-toggle="collapse" data-target="#joulupaiva">
+                                        {{#unless toggleJoulupaiva}}
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                        {{else}}
+                                        <i class="glyphicon glyphicon-minus"></i>
+                                        {{/unless}}
+                                    </span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="collapse" id="joulupaiva">
+                                    <div class="map-container">
+                                        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+                                    </div>
+                                    {{> quickForm collection='Meteor.users' id="joulupaaiva" type="update" doc=omaprofiili fields="profile.ilmoitukset.joulupaiva" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-md-6">
-                <div>
-                    <h1>Yleiset tiedot</h1>
-                    <p>Profiili: Aktiivinen</p>
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Yleiset tiedot
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        Ilmoitus: Aktiivinen
+                    </div>
                 </div>
-                <div>
-                    <h1>Saadut keikat</h1>
-                    <p>Sinulla on z tilausta</p>
-                    <p>(f) uutta</p>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Saadut keikat
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Sinulla on z tilaus</p>
+                        <p>(f) uutta</p>
+                    </div>
                 </div>
-                <div>
-                    <h1>Statistiikkaa, sivun katselut ym</h1>
-                    <p>Sivuasi katsottu tänään: x kertaa</p>
-                    <p>Sivua katsottu kaikkiaan y kertaa</p>
-                </div>
-                <div>
-                    <button class="btn btn-secondary">Jaa sivu</button>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Statistiikka
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <p>Sivuasi on katsottu tänään x kertaa</p>
+                        <p>Yhteensä y kertaa tällä viikolla</p>
+                    </div>
                 </div>
             </div>
         </div>

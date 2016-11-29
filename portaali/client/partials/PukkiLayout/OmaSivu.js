@@ -1,63 +1,92 @@
 Template.OmaSivu.onCreated(function() {
     this.editMode = new ReactiveVar(false); // variable for editmode, default false
-});
-Template.OmaSivu.onRendered(function() {
-    GoogleMaps.load({key: Meteor.settings.public.googleMaps});
+    this.toggleJouluaatto = new ReactiveVar(false);
+    this.toggleJoulupaiva = new ReactiveVar(false); 
+
+    /* hande map events and reactive updates here */
+    GoogleMaps.ready('exampleMap', function(map) {
+        
+        // Add a CIRCLE to the map once it's ready
+        var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map.instance,
+            center: map.options.center,
+            radius: 1000,
+            editable: true,
+            draggable: true 
+        });
+
+    });
+    
+    /* hande map events and reactive updates here */
+    GoogleMaps.ready('jouluaattoMap', function(map) {
+        
+        // Add a CIRCLE to the map once it's ready
+        var cityCircle = new google.maps.Circle({
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map.instance,
+            center: map.options.center,
+            radius: 1000,
+            editable: true,
+            draggable: true 
+        });
+    });
 });
 
 
 Template.OmaSivu.events({
-    "click .fa-pencil": function(event, template) {
-        template.editMode.set(!template.editMode.get());
+    "click #toggle-jouluaatto": function(event, template) {
+        template.toggleJouluaatto.set(!template.toggleJouluaatto.get());
+        if (template.toggleJouluaatto.get()) {
+            GoogleMaps.load({key: Meteor.settings.public.googleMaps}); // load map if opened
+        }
     },
-    "change input[type='file']": function(e) {
-        files = e.currentTarget.files;
-        Cloudinary.upload( files, { public_id: Meteor.userId() }, function(err, res) {
-            if(err) {
-                console.log(err);
-                Bert.alert( err, 'danger' );
-            } else { 
-                Meteor.call('addProfilePic', res.version);
-            } 
-        });
-    },
-    "click .poistonappi": function(e) {
-        Meteor.call("c.delete_by_public_id", Meteor.userId());
-        Meteor.call('removeProfilePic');
-    },
-    "click .lisaysnappi": function(e) {
-        Bert.alert("Coming soon!!");
+    "click #toggle-joulupaiva": function(event, template) {
+        template.toggleJoulupaiva.set(!template.toggleJoulupaiva.get());
+        if (template.toggleJoulupaiva.get()) {
+            GoogleMaps.load({key: Meteor.settings.public.googleMaps}); // load map if opened
+        }
     }
 });
 
 Template.OmaSivu.helpers({
-    // userId for profile form doc
-    user: function() {
-        return Meteor.user();
-    },
-
-    userId: function() {
-        return Meteor.userId();
-    },
-
     omaprofiili: ()=> {
         return Meteor.users.findOne({});
     },
-
-    editMode: function() {
-        return Template.instance().editMode.get();
-    },
-
-
     exampleMapOptions: function() {
         // Make sure the maps API has loaded
         if (GoogleMaps.loaded()) {
-            //           // Map initialization options
+            // Map initialization options
             return {
                 center: new google.maps.LatLng(60.1699, 24.9384),
                 zoom: 12,
                 disableDefaultUI: true
             };
         }
+    },
+    aattoMapOptions: function() {
+        // Make sure the maps API has loaded
+        if (GoogleMaps.loaded()) {
+            // Map initialization options
+            return {
+                center: new google.maps.LatLng(60.1699, 24.9384),
+                zoom: 12,
+                disableDefaultUI: true
+            };
+        }
+    },
+    toggleJoulupaiva: function() {
+        return Template.instance().toggleJoulupaiva.get();
+    },
+    toggleJouluaatto: function() {
+        return Template.instance().toggleJouluaatto.get();
     }
 });

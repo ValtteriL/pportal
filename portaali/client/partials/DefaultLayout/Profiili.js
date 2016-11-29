@@ -7,7 +7,6 @@ Template.Profiili.onCreated(function() {
 
     this.editKielitaito = new ReactiveVar(false);
     this.editKuvaus = new ReactiveVar(false);
-    this.editHinta = new ReactiveVar(false);
 });
 
 Template.Profiili.helpers({
@@ -23,9 +22,6 @@ Template.Profiili.helpers({
     },
     editKuvaus: function() {
         return Template.instance().editKuvaus.get();
-    },
-    editHinta: function() {
-        return Template.instance().editHinta.get();
     }
 });
 
@@ -58,17 +54,10 @@ Template.Profiili.events({
         e.preventDefault();
         template.editKuvaus.set(!template.editKuvaus.get());
     },
-    "click #hintapencil": function(e, template) {
-        e.preventDefault();
-        template.editHinta.set(!template.editHinta.get());
-    },
     "submit #kielitaitoForm": function(e, template) {
         template.editKielitaito.set(!template.editKielitaito.get());
     },
     "submit #kuvausForm": function(e, template) {
         template.editKuvaus.set(!template.editKuvaus.get());
-    },
-    "submit #hintaForm": function(e, template) {
-        template.editHinta.set(!template.editHinta.get());
-    },
+    }
 });

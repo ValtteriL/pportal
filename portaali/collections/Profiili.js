@@ -1,5 +1,51 @@
 Schema = {};
 
+/* user.profile.ilmoitukset */
+Schema.ProfiiliIlmoitusSchema = new SimpleSchema({
+    aloitusaika : {
+        type: Date,
+        autoform: {
+            afFieldInput: {
+                type: "bootstrap-datetimepicker",
+            }
+        }
+    },
+    lopetusaika : {
+        type: Date,
+        autoform: {
+            afFieldInput: {
+                type: "bootstrap-datetimepicker"
+            }
+        }
+    },
+    kulkuvaline: {
+        type: String,
+        label: "Kulkuväline",
+        allowedValues: ['auto','pyörä','julkinen','jalan'],
+        autoform: {
+            type: "select-radio-inline"
+        }
+    },
+    hintaVartti : {
+        type: Number,
+        label: "Hinta / 15min",
+    }
+});
+
+
+Schema.ilmoitukset = new SimpleSchema({
+    jouluaatto: {
+        type: Schema.ProfiiliIlmoitusSchema,
+        optional: true
+    },
+    joulupaiva: {
+        type: Schema.ProfiiliIlmoitusSchema,
+        optional: true
+    }
+});
+
+
+/* user.profile */
 Schema.ProfiiliSchema = new SimpleSchema({
     name: {
         type: String,
@@ -53,11 +99,6 @@ Schema.ProfiiliSchema = new SimpleSchema({
             type: "select-radio-inline"
         }
     },
-    hinta: {
-        type: Number,
-        label: "Hinta",
-        optional: true
-    },
     automaatio: {
         type: Boolean,
         optional: true,
@@ -65,6 +106,10 @@ Schema.ProfiiliSchema = new SimpleSchema({
         autoform: {
             type: "boolean-checkbox"
         }
+    },
+    ilmoitukset: {
+        type: Schema.ilmoitukset,
+        optional: true
     }
 });
 

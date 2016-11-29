@@ -23,3 +23,7 @@
 #upload{
     display: none;
 }
+
+#kuvausbox {
+    white-space: pre;
+}

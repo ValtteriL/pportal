@@ -61,18 +61,9 @@
                                     <h3 class="panel-title">
                                         Hinta
                                     </h3>
-                                    {{#if ownProfile}}
-                                    {{#unless editHinta}}
-                                    <span><a href="#" id="hintapencil"><i class="fa fa-pencil fa-lg"></i></a></span>
-                                    {{/unless}}
-                                    {{/if}}
                                 </div>
                                 <div class="hinta panel-body">
-                                    {{#if editHinta}}
-                                    {{> quickForm collection='Meteor.users' id="hintaForm" type="update" doc=pukki fields="profile.hinta" }}
-                                    {{else}}
-                                    <p>{{pukki.profile.hinta}}</p>
-                                    {{/if}}
+                                    <p>50 e</p>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +87,7 @@
                             {{#if editKuvaus}}
                             {{> quickForm collection='Meteor.users' id="kuvausForm" type="update" doc=pukki fields="profile.kuvaus" }}
                             {{else}}
-                            <p>{{pukki.profile.kuvaus}}</p>
+                            <p id="kuvausbox">{{pukki.profile.kuvaus}}</p>
                             {{/if}}
                         </div>
                     </div>
