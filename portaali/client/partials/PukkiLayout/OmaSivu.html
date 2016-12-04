@@ -12,26 +12,34 @@
                         </h3>
                     </div>
                     <div class="panel-body">
+                        <div class="form-group">
+                            <div class='input-group datetimepicker' id='datetimepicker3'>
+                                <input type='text' class="form-control" />
+                                <span class="input-group-addon">
+                                    <i class="glyphicon glyphicon-time"></i>
+                                </span>
+                            </div>
+                        </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h3 class="panel-title">
                                     Jouluaatto
                                 </h3>
-                                    <span class="pull-right clickable" id="toggle-jouluaatto" data-toggle="collapse" data-target="#jouluaatto">
-                                        {{#unless toggleJouluaatto}}
-                                        <i class="glyphicon glyphicon-plus"></i>
-                                        {{else}}
-                                        <i class="glyphicon glyphicon-minus"></i>
-                                        {{/unless}}
-                                    </span>
+                                <span class="pull-right clickable" id="toggle-jouluaatto" data-toggle="collapse" data-target="#collapse1">
+                                    {{#unless toggleJouluaatto}}
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    {{else}}
+                                    <i class="glyphicon glyphicon-minus"></i>
+                                    {{/unless}}
+                                </span>
                             </div>
+                            <div id="collapse1" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <div class="collapse" id="jouluaatto">
                                     <div class="map-container">
                                         {{> googleMap name="jouluaattoMap" options=aattoMapOptions}}
                                     </div>
-                                    {{> quickForm collection='Meteor.users' id="jouluaaatto" type="update" doc=omaprofiili fields="profile.ilmoitukset.jouluaatto" }}
-                                </div>
+                                    {{> quickForm collection='Meteor.users' id="jouluaaatto" type="update" doc=omaprofiili fields="profile.ilmoitukset.jouluaatto.aloitusaika,profile.ilmoitukset.jouluaatto.lopetusaika,profile.ilmoitukset.jouluaatto.kulkuvaline,profile.ilmoitukset.jouluaatto.hintaVartti" }}
+                            </div>
                             </div>
                         </div>
 
@@ -40,21 +48,21 @@
                                 <h3 class="panel-title">
                                     Joulupäivä
                                 </h3>
-                                    <span class="pull-right clickable" id="toggle-joulupaiva" data-toggle="collapse" data-target="#joulupaiva">
-                                        {{#unless toggleJoulupaiva}}
-                                        <i class="glyphicon glyphicon-plus"></i>
-                                        {{else}}
-                                        <i class="glyphicon glyphicon-minus"></i>
-                                        {{/unless}}
-                                    </span>
+                                <span class="pull-right clickable" id="toggle-joulupaiva" data-toggle="collapse" data-target="#collapse2">
+                                    {{#unless toggleJoulupaiva}}
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                    {{else}}
+                                    <i class="glyphicon glyphicon-minus"></i>
+                                    {{/unless}}
+                                </span>
                             </div>
+                            <div id="collapse2" class="panel-collapse collapse in">
                             <div class="panel-body">
-                                <div class="collapse" id="joulupaiva">
                                     <div class="map-container">
                                         {{> googleMap name="exampleMap" options=exampleMapOptions}}
                                     </div>
-                                    {{> quickForm collection='Meteor.users' id="joulupaaiva" type="update" doc=omaprofiili fields="profile.ilmoitukset.joulupaiva" }}
-                                </div>
+                                    {{> quickForm collection='Meteor.users' id="joulupaaiva" type="update" doc=omaprofiili fields="profile.ilmoitukset.joulupaiva.aloitusaika,profile.ilmoitukset.joulupaiva.lopetusaika,profile.ilmoitukset.joulupaiva.kulkuvaline,profile.ilmoitukset.joulupaiva.hintaVartti" }}
+                            </div>
                             </div>
                         </div>
                     </div>

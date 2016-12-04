@@ -103,6 +103,7 @@ reactive-var@1.0.11
 reload@1.1.11
 retry@1.0.9
 routepolicy@1.0.12
+rzymek:moment-locale-fi@2.14.1
 service-configuration@1.0.11
 session@1.1.7
 sha@1.0.9

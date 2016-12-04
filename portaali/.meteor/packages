@@ -46,6 +46,8 @@ matb33:bootstrap-glyphicons
 dburles:google-maps
 less@2.7.8
 
+momentjs:moment
+rzymek:moment-locale-fi
 mrt:moment-timezone
 aldeed:autoform-bs-datetimepicker
 tsega:bootstrap3-datetimepicker@=3.1.3_3 

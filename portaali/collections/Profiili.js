@@ -28,7 +28,7 @@ Schema.ProfiiliIlmoitusSchema = new SimpleSchema({
     },
     hintaVartti : {
         type: Number,
-        label: "Hinta / 15min",
+        label: "Euroa / 15min",
     }
 });
 
@@ -36,7 +36,8 @@ Schema.ProfiiliIlmoitusSchema = new SimpleSchema({
 Schema.ilmoitukset = new SimpleSchema({
     jouluaatto: {
         type: Schema.ProfiiliIlmoitusSchema,
-        optional: true
+        optional: true,
+        label: "kek"
     },
     joulupaiva: {
         type: Schema.ProfiiliIlmoitusSchema,
